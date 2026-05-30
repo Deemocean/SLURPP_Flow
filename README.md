@@ -15,11 +15,13 @@ Team: [Jiayi Wu](https://jiayi-wu-leo.github.io/), [Tianfu Wang](https://tianfwa
 ![](doc/pipeline.png)
 	
 ## Install envrionment
-We use conda for our envrionment mangement, use the ```environment.yml``` file to install 
+We use [uv](https://docs.astral.sh/uv/) for environment management. Run ```uv sync``` to create the virtual environment (`.venv`) and install all dependencies, including the CUDA 11.8 build of PyTorch. uv installs Python 3.10 automatically if needed.
+
+Prefix commands with ```uv run``` (e.g. ```uv run python ...```) to run them inside the environment, or activate it once with ```source .venv/bin/activate```.
 
 ## Inference 
-run ```python scripts/download_models.py``` to download pretrained models
-then run ```sh scripts/inference/infer_real.sh``` to run inference on the set of example test images
+run ```uv run python scripts/download_models.py``` to download pretrained models
+then run ```uv run sh scripts/inference/infer_real.sh``` to run inference on the set of example test images
 
 
 ## Training

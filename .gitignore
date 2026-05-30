@@ -218,3 +218,4 @@ __pycache__/*
 *.DS_Store
 outputs/*
 models/*
+CLAUDE.md

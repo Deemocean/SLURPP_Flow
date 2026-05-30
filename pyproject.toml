@@ -1,0 +1,55 @@
+[project]
+name = "slurpp"
+version = "0.1.0"
+description = "SLURPP: Single-Step Latent Diffusion for Underwater Image Restoration (IEEE TPAMI 2025)"
+readme = "README.md"
+requires-python = "==3.10.*"
+dependencies = [
+    # core numerics / deep learning (CUDA 11.8 build, see [tool.uv.sources] below)
+    "numpy==1.26.4",
+    "torch==2.0.1",
+    "torchvision==0.15.2",
+    "torchaudio==2.0.2",
+    "xformers==0.0.20",
+    # diffusion stack
+    "diffusers==0.30.3",
+    "transformers==4.45.1",
+    "huggingface-hub==0.25.1",
+    "accelerate==0.34.2",
+    "safetensors==0.4.5",
+    "tokenizers==0.20.0",
+    # imaging
+    "opencv-python==4.10.0.84",
+    "pillow==10.4.0",
+    "matplotlib==3.9.2",
+    # metrics
+    "lpips==0.1.4",
+    "piq==0.8.0",
+    # data / config
+    "pandas==2.2.3",
+    "omegaconf==2.3.0",
+    # logging
+    "wandb==0.18.2",
+    "tensorboard==2.18.0",
+    # misc utils
+    "tqdm>=4.65,<5",
+    "tabulate==0.9.0",
+    "termcolor==2.4.0",
+    "pynvml==11.5.3",
+]
+
+[tool.uv]
+# This repo is a collection of scripts (run via scripts/*.sh), not an installable
+# package, so don't try to build it — just manage the virtual environment.
+package = false
+
+# PyTorch 2.0.1 + CUDA 11.8 wheels live on the dedicated PyTorch index, not PyPI.
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu118" }
+torchvision = { index = "pytorch-cu118" }
+torchaudio = { index = "pytorch-cu118" }
